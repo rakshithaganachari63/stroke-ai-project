@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML-based Brain Stroke Prediction System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1e293b;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header Section -->
+    <header class="bg-slate-900 shadow-lg py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-white">Stroke AI Predictor</h1>
+            <nav>
+                <ul class="flex space-x-6 text-sm font-medium">
+                    <li><a href="#about" class="text-sky-400 hover:text-sky-300 transition-colors">About</a></li>
+                    <li><a href="#features" class="text-sky-400 hover:text-sky-300 transition-colors">Features</a></li>
+                    <li><a href="#demo" class="text-sky-400 hover:text-sky-300 transition-colors">Demo</a></li>
+                    <li><a href="#disclaimer" class="text-sky-400 hover:text-sky-300 transition-colors">Disclaimer</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+        
+        <!-- Hero Section -->
+        <section class="text-center py-20">
+            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 text-slate-900">
+                Predicting Brain Stroke Risk with Machine Learning
+            </h2>
+            <p class="text-lg text-slate-500 max-w-2xl mx-auto mb-8">
+                Harnessing the power of AI to analyze health data and provide an early assessment of potential stroke risk.
+            </p>
+            <a href="#demo" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-8 rounded-full transition-colors shadow-lg">
+                Try the Demo
+            </a>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="bg-slate-800 p-8 md:p-12 rounded-2xl shadow-xl mb-12">
+            <div class="md:flex items-center space-x-8">
+                <div class="flex-1">
+                    <h3 class="text-3xl font-bold mb-4 text-white">What is a Brain Stroke?</h3>
+                    <p class="text-slate-300 leading-relaxed mb-4">
+                        A brain stroke occurs when blood flow to an area of the brain is cut off. Brain cells, deprived of oxygen, begin to die. This can lead to a wide range of neurological disabilities and can be fatal. Early detection and intervention are crucial to improve outcomes.
+                    </p>
+                    <p class="text-slate-300 leading-relaxed">
+                        Our system uses a machine learning model to analyze key health indicators and predict the likelihood of a stroke, helping to raise awareness and encourage proactive health management.
+                    </p>
+                </div>
+                <div class="flex-1 mt-6 md:mt-0">
+                    <div class="rounded-xl overflow-hidden shadow-lg">
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Features Section -->
+        <section id="features" class="mb-12">
+            <h3 class="text-3xl font-bold text-center mb-8 text-slate-900">Data Features</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-slate-800 p-6 rounded-2xl shadow-lg">
+                    <h4 class="text-xl font-semibold mb-2 text-white">Demographics & Lifestyle</h4>
+                    <ul class="list-disc list-inside text-slate-300 text-sm space-y-2">
+                        <li>Gender & Age</li>
+                        <li>Ever Married</li>
+                        <li>Work Type</li>
+                        <li>Residence Type</li>
+                        <li>Smoking Status</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-800 p-6 rounded-2xl shadow-lg">
+                    <h4 class="text-xl font-semibold mb-2 text-white">Medical History</h4>
+                    <ul class="list-disc list-inside text-slate-300 text-sm space-y-2">
+                        <li>Hypertension</li>
+                        <li>Heart Disease</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-800 p-6 rounded-2xl shadow-lg">
+                    <h4 class="text-xl font-semibold mb-2 text-white">Physiological Metrics</h4>
+                    <ul class="list-disc list-inside text-slate-300 text-sm space-y-2">
+                        <li>Average Glucose Level</li>
+                        <li>Body Mass Index (BMI)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Demo Section -->
+        <section id="demo" class="bg-slate-100 p-8 md:p-12 rounded-2xl shadow-xl mb-12">
+            <h3 class="text-3xl font-bold text-center mb-8 text-slate-900">Simulate a Prediction</h3>
+            <div class="max-w-lg mx-auto">
+                <div id="message-box" class="hidden bg-red-800 text-white p-4 rounded-lg mb-6 text-sm font-medium"></div>
+                <div id="result-box" class="hidden bg-white p-6 rounded-xl border-2 border-green-500 mb-6 transition-all duration-300 shadow">
+                    <p class="text-lg text-slate-800 font-semibold mb-2">Prediction Result</p>
+                    <p id="prediction-text" class="text-green-400 text-2xl font-bold text-center"></p>
+                </div>
+                <form id="prediction-form" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="gender" class="block text-sm font-medium text-slate-700 mb-1">Gender</label>
+                        <select id="gender" class="w-full p-3 bg-white text-slate-800 rounded-lg border border-slate-300">
+                            <option value="" disabled selected>Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="age" class="block text-sm font-medium text-slate-700 mb-1">Age</label>
+                        <input type="number" id="age" placeholder="e.g., 55" class="w-full p-3 bg-white text-slate-800 rounded-lg border border-slate-300">
+                    </div>
+                    <div>
+                        <label for="avg_glucose_level" class="block text-sm font-medium text-slate-700 mb-1">Avg. Glucose Level</label>
+                        <input type="number" id="avg_glucose_level" placeholder="e.g., 140.0" step="0.1" max="999.9" class="w-full p-3 bg-white text-slate-800 rounded-lg border border-slate-300">
+                    </div>
+                    <div>
+                        <label for="bmi" class="block text-sm font-medium text-slate-700 mb-1">BMI</label>
+                        <input type="number" id="bmi" placeholder="e.g., 25.5" step="0.1" class="w-full p-3 bg-white text-slate-800 rounded-lg border border-slate-300">
+                    </div>
+                    <div>
+                        <label for="smoking_status" class="block text-sm font-medium text-slate-700 mb-1">Smoking Status</label>
+                        <select id="smoking_status" class="w-full p-3 bg-white text-slate-800 rounded-lg border border-slate-300">
+                            <option value="" disabled selected>Select Status</option>
+                            <option value="never smoked">Never smoked</option>
+                            <option value="formerly smoked">Formerly smoked</option>
+                            <option value="smokes">Smokes</option>
+                            <option value="Unknown">Unknown</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="work_type" class="block text-sm font-medium text-slate-700 mb-1">Work Type</label>
+                        <select id="work_type" class="w-full p-3 bg-white text-slate-800 rounded-lg border border-slate-300">
+                            <option value="" disabled selected>Select Work Type</option>
+                            <option value="Private">Private</option>
+                            <option value="Self-employed">Self-employed</option>
+                            <option value="Govt_job">Gov't Job</option>
+                            <option value="children">Children</option>
+                            <option value="Never_worked">Never Worked</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="Residence_type" class="block text-sm font-medium text-slate-700 mb-1">Residence Type</label>
+                        <select id="Residence_type" class="w-full p-3 bg-white text-slate-800 rounded-lg border border-slate-300">
+                            <option value="" disabled selected>Select Residence Type</option>
+                            <option value="Urban">Urban</option>
+                            <option value="Rural">Rural</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="ever_married" class="block text-sm font-medium text-slate-700 mb-1">Ever Married</label>
+                        <select id="ever_married" class="w-full p-3 bg-white text-slate-800 rounded-lg border border-slate-300">
+                            <option value="" disabled selected>Select Option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="hypertension" class="block text-sm font-medium text-slate-700 mb-1">Systolic Blood Pressure (mmHg)</label>
+                        <input type="number" id="hypertension" placeholder="e.g., 120" class="w-full p-3 bg-white text-slate-800 rounded-lg border border-slate-300">
+                    </div>
+                    <div>
+                        <label for="heart_disease" class="block text-sm font-medium text-slate-700 mb-1">Heart Disease</label>
+                        <select id="heart_disease" class="w-full p-3 bg-white text-slate-800 rounded-lg border border-slate-300">
+                            <option value="" disabled selected>Select Option</option>
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="col-span-1 md:col-span-2 mt-4">
+                        <button type="submit" class="w-full bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg">
+                            Predict Risk
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Disclaimer Section -->
+        <section id="disclaimer" class="bg-slate-700 p-8 rounded-2xl shadow-xl">
+            <h3 class="text-2xl font-bold mb-4 text-white">Important Disclaimer</h3>
+            <p class="text-sm text-slate-300 leading-relaxed">
+                This system is for educational purposes only and is not a substitute for professional medical advice.
+            </p>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 py-6 mt-12 text-center text-slate-400 text-sm">
+        <p>&copy; 2024 ML Brain Stroke Prediction. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+    document.getElementById('prediction-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const messageBox = document.getElementById('message-box');
+        const resultBox = document.getElementById('result-box');
+        const predictionText = document.getElementById('prediction-text');
+
+        messageBox.classList.add('hidden');
+        resultBox.classList.add('hidden');
+
+        const gender = document.getElementById('gender').value;
+        const age = document.getElementById('age').value;
+        const systolic_bp = document.getElementById('hypertension').value;
+        const heart_disease = document.getElementById('heart_disease').value;
+        const avg_glucose_level = document.getElementById('avg_glucose_level').value;
+        const bmi = document.getElementById('bmi').value;
+        const smoking_status = document.getElementById('smoking_status').value;
+        const work_type = document.getElementById('work_type').value;
+        const Residence_type = document.getElementById('Residence_type').value;
+        const ever_married = document.getElementById('ever_married').value;
+
+        if (!gender || !age || !systolic_bp || !heart_disease || !avg_glucose_level ||
+            !bmi || !smoking_status || !work_type || !Residence_type || !ever_married) {
+
+            messageBox.textContent = "Please fill out all fields.";
+            messageBox.classList.remove('hidden');
+            return;
+        }
+
+        const payload = {
+            gender, age, systolic_bp, heart_disease,
+            avg_glucose_level, bmi, smoking_status,
+            work_type, Residence_type, ever_married
+        };
+
+        fetch("http://127.0.0.1:5000/predict", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(payload)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.error) {
+                messageBox.textContent = data.error;
+                messageBox.classList.remove('hidden');
+                return;
+            }
+
+            const risk = data.risk_level;
+            predictionText.textContent = `${risk} (${data.stroke_probability * 100}%)`;
+
+            resultBox.classList.remove('hidden');
+
+            resultBox.classList.remove('border-green-500', 'border-yellow-500', 'border-red-500');
+            predictionText.classList.remove('text-green-400', 'text-yellow-400', 'text-red-400');
+
+            if (risk.includes("Low")) {
+                resultBox.classList.add('border-green-500');
+                predictionText.classList.add('text-green-400');
+            } else if (risk.includes("Moderate")) {
+                resultBox.classList.add('border-yellow-500');
+                predictionText.classList.add('text-yellow-400');
+            } else {
+                resultBox.classList.add('border-red-500');
+                predictionText.classList.add('text-red-400');
+            }
+        })
+        .catch(err => {
+            messageBox.textContent = "Backend error: " + err;
+            messageBox.classList.remove('hidden');
+        });
+    });
+
+    // Restrict glucose input to 3 digits before decimal
+    document.getElementById('avg_glucose_level').addEventListener('input', function(e) {
+        const value = e.target.value;
+        const integerPart = value.split('.')[0];
+        if (integerPart.length > 3) {
+            e.target.value = integerPart.slice(0, 3) + (value.includes('.') ? '.' + value.split('.')[1] : '');
+        }
+    });
+    </script>
+         
+
+</body>
+</html>
